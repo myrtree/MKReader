@@ -1,0 +1,8 @@
+﻿MKReader - program for reading text files (in CP1251, UTF8, UTF16, UTF32, KOI8R, CP866 codepages) for Dingux.
+
+Keys:
+	*UP/DOWN & LEFT/RIGHT - text navigation
+	*SELECT - exit
+
+Authors:
+	myrtree & KOT

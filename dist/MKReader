@@ -1,0 +1,9 @@
+title=MKReader
+icon=/boot/local/apps/MKReader/MKReader.png
+exec=/boot/local/apps/MKReader/MKReader.dge
+clock=336
+volume=100
+backlight=100
+selectordir=/boot/local/apps/MKReader/books
+selectorfilter=txt
+selectorbrowser=true

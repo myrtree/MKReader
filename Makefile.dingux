@@ -1,0 +1,20 @@
+TOOLCHAINDIR := /dingux
+BINPATH := $(TOOLCHAINDIR)/bin
+LIBPATH := $(TOOLCHAINDIR)/lib
+INCLUDEPATH := $(TOOLCHAINDIR)/mipsel-linux-uclibc/include
+
+ARCH := mipsel-linux-uclibc-
+CC := ${BINPATH}/$(ARCH)gcc
+
+INCLUDES := -I$(INCLUDEPATH) -I$(INCLUDEPATH)/SDL -I../tstl2cl/include
+
+CFLAGS += $(INCLUDES) $(shell sdl-config --cflags) $(shell agar-config --cflags)
+LDFLAGS += $(shell sdl-config --libs) $(shell agar-config --libs) -lSDL_ttf ../tstl2cl/libtstl2cl.a
+
+SOURCES  := app.c def_code_page.c mini_file_dlg.c color_widget.c
+
+all: 
+	$(CC) $(SOURCES) -o app.dge -s $(CFLAGS) $(LDFLAGS)
+
+clean:
+	rm -f *.o *~
