@@ -1,4 +1,4 @@
-#include <stdint.h>
+п»ї#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -38,12 +38,12 @@ SDLKey key;
 SDL_Event event;
 int font_size = 14;
 
-/* Back и Front применяются для обозначения направления чтения в файле.
-   Back - движение в файле в сторону его начала.
-   Front - в сторону конца.
-   ToEnd и ToFront применяются для обозначения позиции вставки блока в ленту.
-   ToEnd - вставка в конец ленты.
-   ToFront - вставка в начало.                                                         */
+/* Back Рё Front РїСЂРёРјРµРЅСЏСЋС‚СЃСЏ РґР»СЏ РѕР±РѕР·РЅР°С‡РµРЅРёСЏ РЅР°РїСЂР°РІР»РµРЅРёСЏ С‡С‚РµРЅРёСЏ РІ С„Р°Р№Р»Рµ.
+   Back - РґРІРёР¶РµРЅРёРµ РІ С„Р°Р№Р»Рµ РІ СЃС‚РѕСЂРѕРЅСѓ РµРіРѕ РЅР°С‡Р°Р»Р°.
+   Front - РІ СЃС‚РѕСЂРѕРЅСѓ РєРѕРЅС†Р°.
+   ToEnd Рё ToFront РїСЂРёРјРµРЅСЏСЋС‚СЃСЏ РґР»СЏ РѕР±РѕР·РЅР°С‡РµРЅРёСЏ РїРѕР·РёС†РёРё РІСЃС‚Р°РІРєРё Р±Р»РѕРєР° РІ Р»РµРЅС‚Сѓ.
+   ToEnd - РІСЃС‚Р°РІРєР° РІ РєРѕРЅРµС† Р»РµРЅС‚С‹.
+   ToFront - РІСЃС‚Р°РІРєР° РІ РЅР°С‡Р°Р»Рѕ.                                                         */
 
 typedef enum __TNewLineWay {CR, LF, CRLF, UNKNOWN_NL} TNewLineWay;
 typedef enum __TDirection {End = 0,Back = 0,Front = 1,ToEnd = 0,ToFront = 1} TDirection;
@@ -420,7 +420,7 @@ FreeSource(PTSource p_source)
     return result;
 }
 
-// А то хрен его знает какой EOF на других платформах
+// Рђ С‚Рѕ С…СЂРµРЅ РµРіРѕ Р·РЅР°РµС‚ РєР°РєРѕР№ EOF РЅР° РґСЂСѓРіРёС… РїР»Р°С‚С„РѕСЂРјР°С…
 #define BOF EOF-1
 #define EOF_FERROR EOF-2
 #define FOK 0
@@ -562,9 +562,9 @@ NextChar(PTSource p_source, TUTF32Char *out, TDirection direction)
 
 #define max_block_size 8192
 
-/* Функция  читая  блок текста(абзац),  убирает лишние переносы каретки.  Формат новой
-   строки - 0x0A. Далее последовательные вызовы функции RenderTXTLine отрисовывают его
-   построчно.                                                                          */
+/* Р¤СѓРЅРєС†РёСЏ  С‡РёС‚Р°СЏ  Р±Р»РѕРє С‚РµРєСЃС‚Р°(Р°Р±Р·Р°С†),  СѓР±РёСЂР°РµС‚ Р»РёС€РЅРёРµ РїРµСЂРµРЅРѕСЃС‹ РєР°СЂРµС‚РєРё.  Р¤РѕСЂРјР°С‚ РЅРѕРІРѕР№
+   СЃС‚СЂРѕРєРё - 0x0A. Р”Р°Р»РµРµ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅС‹Рµ РІС‹Р·РѕРІС‹ С„СѓРЅРєС†РёРё RenderTXTLine РѕС‚СЂРёСЃРѕРІС‹РІР°СЋС‚ РµРіРѕ
+   РїРѕСЃС‚СЂРѕС‡РЅРѕ.                                                                          */
 TContentType
 ReadTXTBlock(PTSource p_source, TDirection direction,
              TUTF32Char *p_bufer, TUTF32Char **p_out)
@@ -608,7 +608,7 @@ ReadTXTBlock(PTSource p_source, TDirection direction,
             {
                 break;
             }
-            // новый абзац. В начале абзаца, бывают ещё и табы, бро.
+            // РЅРѕРІС‹Р№ Р°Р±Р·Р°С†. Р’ РЅР°С‡Р°Р»Рµ Р°Р±Р·Р°С†Р°, Р±С‹РІР°СЋС‚ РµС‰С‘ Рё С‚Р°Р±С‹, Р±СЂРѕ.
             if(p_bufer[i+1] == 0x20)
             {
                 break;
@@ -616,8 +616,8 @@ ReadTXTBlock(PTSource p_source, TDirection direction,
             else
             {
                 p_bufer[i] = 0x20;
-            }                // Заголовок. Cтоит указать половину, примерного
-            if(from_nl < 20) // кол-ва глифов, влезающих в строку.
+            }                // Р—Р°РіРѕР»РѕРІРѕРє. CС‚РѕРёС‚ СѓРєР°Р·Р°С‚СЊ РїРѕР»РѕРІРёРЅСѓ, РїСЂРёРјРµСЂРЅРѕРіРѕ
+            if(from_nl < 20) // РєРѕР»-РІР° РіР»РёС„РѕРІ, РІР»РµР·Р°СЋС‰РёС… РІ СЃС‚СЂРѕРєСѓ.
             {
                 p_bufer[i] = 0x0A;
             }
@@ -643,7 +643,7 @@ ReadTXTBlock(PTSource p_source, TDirection direction,
 
 #define max_tag_size 100
 
-// Заглушка
+// Р—Р°РіР»СѓС€РєР°
 TContentType
 ReadFB2Block(PTSource p_source, TDirection direction,
              TUTF32Char *p_bufer, TUTF32Char **p_out)
@@ -720,8 +720,8 @@ ReadFB2Block(PTSource p_source, TDirection direction,
     }
 }
 
-/* Функция рендерит строку до нуля или до 0x0A(LF).Возвращает в p_chars_printed кол-во
-   считанных байт. Если строка NULL или первый символ в ней 0, возвращается NULL       */
+/* Р¤СѓРЅРєС†РёСЏ СЂРµРЅРґРµСЂРёС‚ СЃС‚СЂРѕРєСѓ РґРѕ РЅСѓР»СЏ РёР»Рё РґРѕ 0x0A(LF).Р’РѕР·РІСЂР°С‰Р°РµС‚ РІ p_chars_printed РєРѕР»-РІРѕ
+   СЃС‡РёС‚Р°РЅРЅС‹С… Р±Р°Р№С‚. Р•СЃР»Рё СЃС‚СЂРѕРєР° NULL РёР»Рё РїРµСЂРІС‹Р№ СЃРёРјРІРѕР» РІ РЅРµР№ 0, РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ NULL       */
 SDL_Surface *
 RenderTXTLine(TUTF32Char *p_str, int *p_chars_printed)
 {
@@ -816,11 +816,11 @@ RenderTXTBlock(PTSource p_source, TDirection direction)
 
 #define min_preload_range 3 * screen_height;
 
-/* Планируется только прокрутка юзером вручную и переход на часть по проценту.
-   - С переходом по проценту всё понятно. Перешли на позицию в файле и заполнили
-   ленту вверх и вниз.
-   - При перемотке подгружаются блоки текста пока расстояние от верхней границы
-   экрана до краёв ленты не станет больше, чем min_preload_range.                 */
+/* РџР»Р°РЅРёСЂСѓРµС‚СЃСЏ С‚РѕР»СЊРєРѕ РїСЂРѕРєСЂСѓС‚РєР° СЋР·РµСЂРѕРј РІСЂСѓС‡РЅСѓСЋ Рё РїРµСЂРµС…РѕРґ РЅР° С‡Р°СЃС‚СЊ РїРѕ РїСЂРѕС†РµРЅС‚Сѓ.
+   - РЎ РїРµСЂРµС…РѕРґРѕРј РїРѕ РїСЂРѕС†РµРЅС‚Сѓ РІСЃС‘ РїРѕРЅСЏС‚РЅРѕ. РџРµСЂРµС€Р»Рё РЅР° РїРѕР·РёС†РёСЋ РІ С„Р°Р№Р»Рµ Рё Р·Р°РїРѕР»РЅРёР»Рё
+   Р»РµРЅС‚Сѓ РІРІРµСЂС… Рё РІРЅРёР·.
+   - РџСЂРё РїРµСЂРµРјРѕС‚РєРµ РїРѕРґРіСЂСѓР¶Р°СЋС‚СЃСЏ Р±Р»РѕРєРё С‚РµРєСЃС‚Р° РїРѕРєР° СЂР°СЃСЃС‚РѕСЏРЅРёРµ РѕС‚ РІРµСЂС…РЅРµР№ РіСЂР°РЅРёС†С‹
+   СЌРєСЂР°РЅР° РґРѕ РєСЂР°С‘РІ Р»РµРЅС‚С‹ РЅРµ СЃС‚Р°РЅРµС‚ Р±РѕР»СЊС€Рµ, С‡РµРј min_preload_range.                 */
 void
 UpdateTape(PTTape p_tape, PTSource p_source)
 {
@@ -838,7 +838,7 @@ UpdateTape(PTTape p_tape, PTSource p_source)
     min_lower_bound =         screen_lower_bound + min_preload_range;
 
     first = c_vector_begin(&p_tape->blocks);
-    if(p_tape->upper_bound > min_upper_bound) // М. б. нужно добавить блоки в верх ленты
+    if(p_tape->upper_bound > min_upper_bound) // Рњ. Р±. РЅСѓР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ Р±Р»РѕРєРё РІ РІРµСЂС… Р»РµРЅС‚С‹
     {
         p_block = (PTTapeBlock)ITER_REF(first);
         if(p_block)
@@ -850,7 +850,7 @@ UpdateTape(PTTape p_tape, PTSource p_source)
             }
         }
     }
-    else // удалить ненужные блоки вверху
+    else // СѓРґР°Р»РёС‚СЊ РЅРµРЅСѓР¶РЅС‹Рµ Р±Р»РѕРєРё РІРІРµСЂС…Сѓ
     {
         p_block = (PTTapeBlock)ITER_REF(first);
         while(p_block&&!InSegment(p_block->upper_bound,p_block->lower_bound,min_upper_bound))
@@ -861,7 +861,7 @@ UpdateTape(PTTape p_tape, PTSource p_source)
 
     last = c_vector_end(&p_tape->blocks);
     ITER_DEC(last);
-    if(p_tape->lower_bound < min_lower_bound) // Может стоит добавить блоки в низ ленты
+    if(p_tape->lower_bound < min_lower_bound) // РњРѕР¶РµС‚ СЃС‚РѕРёС‚ РґРѕР±Р°РІРёС‚СЊ Р±Р»РѕРєРё РІ РЅРёР· Р»РµРЅС‚С‹
     {
         p_block = (PTTapeBlock)ITER_REF(last);
         if(p_block)
@@ -1068,7 +1068,7 @@ AG_Scrollbar *sb_color_r, *sb_color_g, *sb_color_b;
 int fnt_min_size = 8, fnt_max_size = 100, fnt_size_vis = 1;
 uint8_t min_clr = 0, max_clr = 255, clr_vis = 1;
 
-/* колбэк функция, вызываемая при выборе файла в диалоге */
+/* РєРѕР»Р±СЌРє С„СѓРЅРєС†РёСЏ, РІС‹Р·С‹РІР°РµРјР°СЏ РїСЂРё РІС‹Р±РѕСЂРµ С„Р°Р№Р»Р° РІ РґРёР°Р»РѕРіРµ */
 static void
 FileSelected(AG_Event *event)
 {
@@ -1150,11 +1150,11 @@ NextTab(void)
 static void
 CreateWindow(void)
 {
-    // Регистрация своих виджетов в системе
+    // Р РµРіРёСЃС‚СЂР°С†РёСЏ СЃРІРѕРёС… РІРёРґР¶РµС‚РѕРІ РІ СЃРёСЃС‚РµРјРµ
     AG_RegisterClass(&agSimpleFileDlgClass);
     AG_RegisterClass(&colorWidgetClass);
 
-    // Виджет с закладками
+    // Р’РёРґР¶РµС‚ СЃ Р·Р°РєР»Р°РґРєР°РјРё
     nb = AG_NotebookNew(win, AG_NOTEBOOK_EXPAND);
     file_tab = AG_NotebookAddTab(nb, "Load file", AG_BOX_VERT);
     bkmks_tab = AG_NotebookAddTab(nb, "Bookmarks", AG_BOX_VERT);
@@ -1162,16 +1162,16 @@ CreateWindow(void)
     help_tab = AG_NotebookAddTab(nb, "Help", AG_BOX_VERT);
     about_tab = AG_NotebookAddTab(nb, "About", AG_BOX_VERT);
 
-    // Диалог выбора файла
+    // Р”РёР°Р»РѕРі РІС‹Р±РѕСЂР° С„Р°Р№Р»Р°
     fd = AG_SimpleFileDlgNew(file_tab, AG_SIMPLEFILEDLG_EXPAND, MK_KEY_CHOOSE);
     AG_SetEvent(fd, "simpledlg-file-selected", FileSelected, NULL);
 
-    // Выбор размера шрифта
+    // Р’С‹Р±РѕСЂ СЂР°Р·РјРµСЂР° С€СЂРёС„С‚Р°
     AG_LabelNewPolled(setts_tab, AG_LABEL_HFILL, "font size: %d", &font_size);
     AG_ScrollbarNewInt(setts_tab, AG_SCROLLBAR_HORIZ, AG_SCROLLBAR_HFILL,
                        &font_size, &fnt_min_size, &fnt_max_size, &fnt_size_vis);
 
-    // Выбор цвета шрифта
+    // Р’С‹Р±РѕСЂ С†РІРµС‚Р° С€СЂРёС„С‚Р°
     AG_LabelNew(setts_tab, 0, "%s", "font color (RGB)");
 
     color_pane = AG_PaneNewHoriz(setts_tab, AG_PANE_HFILL | AG_PANE_UNMOVABLE);
@@ -1191,7 +1191,7 @@ CreateWindow(void)
     color_widget = AG_ColorWidgetNewRGB(color_pane->div[1], &chgd_fnt_clr.r, &chgd_fnt_clr.g,
                                         &chgd_fnt_clr.b, AG_CLRWIDGET_EXPAND);
 
-    // Выбор цвета фона
+    // Р’С‹Р±РѕСЂ С†РІРµС‚Р° С„РѕРЅР°
     AG_LabelNew(setts_tab, 0, "%s", "background color (RGB)");
 
     color_pane = AG_PaneNewHoriz(setts_tab, AG_PANE_HFILL | AG_PANE_UNMOVABLE);
@@ -1211,7 +1211,7 @@ CreateWindow(void)
     color_widget = AG_ColorWidgetNewRGB(color_pane->div[1], &chgd_bg_clr.r, &chgd_bg_clr.g,
                                         &chgd_bg_clr.b, AG_CLRWIDGET_EXPAND);
 
-    // Закладка Help
+    // Р—Р°РєР»Р°РґРєР° Help
     AG_Textbox *tb;
     FILE *help_file;
     char *help_text;
@@ -1231,7 +1231,7 @@ CreateWindow(void)
     AG_TextboxBindUTF8(tb, help_text+3, hf_bufSize);
     AG_TextboxSetCursorPos(tb, 1);
 
-    // Закладка About
+    // Р—Р°РєР»Р°РґРєР° About
     AG_Surface *a_surf = AG_SurfaceFromPNG(".MKReader//about_logo.png");
     AG_Pixmap *px = AG_PixmapFromSurface(about_tab, AG_PIXMAP_RESCALE, a_surf);
     AG_PixmapSetCoords(px, 10, 10);
@@ -1241,7 +1241,7 @@ CreateWindow(void)
                                    "mkreader@gmail.com\n\nRussia, Chita 2011");
     AG_LabelSetPadding(a_labe, 10, 0, 25, 0);
 
-    //Закладка Bookmarks
+    //Р—Р°РєР»Р°РґРєР° Bookmarks
     AG_Button *bm_btn = AG_ButtonNew(bkmks_tab, 0, "Save position");
     AG_Tlist *bm_tlist = AG_TlistNew (bkmks_tab, AG_TLIST_EXPAND);
 
@@ -1306,7 +1306,7 @@ int main(int argc, char **argv)
     win = AG_WindowNewNamedS(AG_WINDOW_NOTITLE | AG_WINDOW_NOBORDERS, "MKReader");
     AG_WindowSetGeometry(win, 0, 0, screen_width, screen_height + 1);
     AG_WindowSetCaption(win, "MKReader");
-    // Создание меню
+    // РЎРѕР·РґР°РЅРёРµ РјРµРЅСЋ
     CreateWindow();
     printf("MENU BUILDED.\n");
 
@@ -1326,15 +1326,15 @@ int main(int argc, char **argv)
     bg_color = chgd_bg_clr;
     printf("CONFIG IS LOADED.\n");
 
-    // Почему то агар, при работе на дингуксе, не передаёт виджетам в фокусе событий от кнопок,
-    // Пока физически не кликнешь в окно. Я честно не знаю какого хуя.
+    // РџРѕС‡РµРјСѓ С‚Рѕ Р°РіР°СЂ, РїСЂРё СЂР°Р±РѕС‚Рµ РЅР° РґРёРЅРіСѓРєСЃРµ, РЅРµ РїРµСЂРµРґР°С‘С‚ РІРёРґР¶РµС‚Р°Рј РІ С„РѕРєСѓСЃРµ СЃРѕР±С‹С‚РёР№ РѕС‚ РєРЅРѕРїРѕРє,
+    // РџРѕРєР° С„РёР·РёС‡РµСЃРєРё РЅРµ РєР»РёРєРЅРµС€СЊ РІ РѕРєРЅРѕ. РЇ С‡РµСЃС‚РЅРѕ РЅРµ Р·РЅР°СЋ РєР°РєРѕРіРѕ С…СѓСЏ.
     SDL_Event event;
     event.type = SDL_MOUSEBUTTONDOWN;
     event.button.button = SDL_BUTTON_LEFT;
     event.button.x = event.button.y = 50;
     SDL_PushEvent(&event);
 
-    // Если путь к файлу передан через параметры, то откроем книгу сразу.
+    // Р•СЃР»Рё РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ РїРµСЂРµРґР°РЅ С‡РµСЂРµР· РїР°СЂР°РјРµС‚СЂС‹, С‚Рѕ РѕС‚РєСЂРѕРµРј РєРЅРёРіСѓ СЃСЂР°Р·Сѓ.
     if(argc > 1)
     {
         assert(p_tape = CreateTape());
@@ -1362,7 +1362,7 @@ int main(int argc, char **argv)
     }
     else
     {
-        // Запуск цикла обработки событий
+        // Р—Р°РїСѓСЃРє С†РёРєР»Р° РѕР±СЂР°Р±РѕС‚РєРё СЃРѕР±С‹С‚РёР№
         MyEventLoop();
     }
 
